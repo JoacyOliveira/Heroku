@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.min.css?h=8d4608df53b6e79bb3075bbd7092631b">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.min.css?h=c123f416a9553b4dd7b8efc6aa2a72f4">
+
+</head>
+<body>
+<!-- Start: Dark NavBar -->
+<div>
+    <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
+         style="height:80px;background-color:#37434d;color:#ffffff;">
+        <div class="container-fluid"><a class="navbar-brand" href="http://www.linkedin.com/in/joacyoliveira/"><i
+                class="fa fa-globe"></i>&nbsp;AiZnn</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                    class="navbar-toggler-icon"></span></button>
+            <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a href="{% url 'home'%}" class="nav-link active" href="#"
+                                                                style="color:#ffffff;"><i class="fa fa-home"></i>&nbsp;Home</a>
+                    </li>
+                    <li class="nav-item" role="presentation"><a href="{% url 'salvar'%}" class="nav-link active"
+                                                                style="color:#ffffff;"><i
+                            class="fa fa-wpexplorer"></i>Salvar produto</a></li>
+                    <li class="nav-item" role="presentation"><a href="{% url 'list'%}" class="nav-link active"
+                                                                style="color:#ffffff;"><i class="fa fa-star-o"></i>&nbsp;Listar
+                        produtos</a></li>
+                    <li class="nav-item" role="presentation"><a href="{% url 'logout-view' %}" class="nav-link active"
+                                                                style="color:#ffffff;"><i
+                            class="fa fa-sign-in"></i>&nbsp;Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- End: Dark NavBar -->
+<div class="col-md-12 search-table-col">
+    <form action="">
+        <div class="form-group pull-right col-lg-4"><input type="text" id="pesquisa" name="pesquisa"
+                                                           placeholder="Pesquise aqui!"
+                                                           class="search form-control">
+            <p align="RIGHT">
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            </p>
+        </div>
+    </form>
+
+    <div class="table-responsive table-bordered table table-hover table-bordered results">
+        <table class="table table-bordered table-hover">
+            <thead class="bill-header cs">
+            <tr>
+                <th id="trs-hd" class="col-lg-1">Nome</th>
+                <th id="trs-hd" class="col-lg-2">Modelo</th>
+                <th id="trs-hd" class="col-lg-3">Preço</th>
+                <th id="trs-hd" class="col-lg-2">Descrição</th>
+                <th id="trs-hd" class="col-lg-2">Imagem</th>
+                <th id="trs-hd" class="col-lg-2">Ação</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {%csrf_token%}
+            {% for produto in produto %}
+
+            <tr>
+                <td>{{produto.nome}}</td>
+                <td>{{produto.modelo}}</td>
+                <td>{{produto.price}}</td>
+                <td>
+                    <div style="width:200px;height:150px;line-height:3em;overflow:auto;padding:2px;">
+                    <blockquote class="blockquote">
+                        <p class="mb-0"></p>
+                        <footer class="blockquote-footer"><font size="2">{{produto.bio}}</font></footer>
+                    </blockquote>
+                    </div>
+                </td>
+                <td><img class="img-responsive" src="{{produto.photo.url}}"></td>
+                <td><a href="{% url 'update' produto.id %}">
+                    <button class="btn btn-success" type="submit" style="margin-left: 5px;"><i class="fa fa-check"
+                                                                                               style="font-size: 15px;"></i>
+                    </button>
+                </a>
+                    <a href="{% url 'delete' produto.id %}">
+                        <button class="btn btn-danger" type="submit" style="margin-left: 5px;"><i class="fa fa-trash"
+                                                                                                  style="font-size: 15px;"></i>
+                        </button>
+                    </a></td>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<!-- End: Table With Search-1 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/script.min.js?h=bedd7c52a4616a4f7f33c1396fbd7a87"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
